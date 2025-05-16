@@ -1,0 +1,28 @@
+[project]
+name = "CSV parser API"
+version = "0.1.0"
+description = "fastapi project"
+authors = [
+    {name = "Evgen Tretyakov",email = "evgentretyakoff@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "fastapi[all] (>=0.115.12,<0.116.0)",
+    "loguru (>=0.7.3,<0.8.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "python-dotenv (>=1.1.0,<2.0.0)",
+    "pydantic-settings (>=2.9.1,<3.0.0)"
+]
+license = {text = "No"}
+
+[tool.poetry]
+packages = [{include = "backend", from = "src"}]
+
+[tool.poetry.scripts]
+backend = "src.backend.main:start"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
