@@ -1,6 +1,6 @@
 [project]
 name = "CSV_parser_API"
-version = "0.1.0"
+version = "0.3.1"
 description = "fastapi project"
 authors = [
     {name = "Evgen Tretyakov",email = "evgentretyakoff@gmail.com"}

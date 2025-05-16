@@ -1,24 +1,26 @@
+import os
+from dotenv import load_dotenv
 from typing import Dict, Any
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from loguru import logger
+
+load_dotenv()
 
 DESCRIPTION = (
-    f"API helps you do awesome stuff." 
+    f"API helps you do awesome stuff."
     f"\n## Items"
-    f"\nYou can **read items**."
-    f"\n## Users"
-    f"\nYou will be able to:"
-    f"\n* **Create** (_not implemented_)." 
-    f"\n* **Read** (_not implemented_)."
+    f"\nYou can read **CSV** & **Excel** files."
 )
 
 
 API_METADATA: Dict[str, Any] = {
     "title": "CSV parser API",
     "description": DESCRIPTION,
-    "version": "0.3.0",
-    "debug": True,
-    "root_path": "/proxy/8889/",
-    "docs_url": "/docs",
-    "redoc_url": "/redoc",
+    "version": "0.3.1",
+    "debug": os.getenv("DEBUG"),
+    "root_path": os.getenv("ROOT_PATH"),
+    "docs_url": os.getenv("DOCS_URL"),
+    "redoc_url": os.getenv("REDOC_URL"),
     "summary": "Deadpool's favorite app. Nuff said.",
     "contact": {
         "name": "Evgen Tretyakov",
@@ -31,7 +33,11 @@ API_METADATA: Dict[str, Any] = {
 }
 
 
-SERVER_SETTINGS = {"host": "0.0.0.0", "port": 8889, "reload": True}
+SERVER_SETTINGS = {
+    "host": os.getenv("HOST"),
+    "port": int(os.getenv("PORT")),
+    "reload": os.getenv("RELOAD"),
+}
 
 
 class AppConfig:
@@ -53,3 +59,39 @@ class AppConfig:
 
 
 config = AppConfig()
+
+
+class AppSettings(BaseSettings):
+
+    # DB_URL: str
+    # SECRET_KEY: str
+
+    DEBUG: bool = os.getenv("DEBUG"),
+    RELOAD: bool = os.getenv("RELOAD"),
+
+    HOST: str = os.getenv("HOST")
+    PORT: int = int(os.getenv("PORT"))
+    
+    ROOT_PATH: str = os.getenv("ROOT_PATH")
+    DOCS_URL: str = os.getenv("DOCS_URL")
+    REDOC_URL: str = os.getenv("REDOC_URL")
+    
+    # Параметры с дефолтными значениями
+    # DEBUG: bool = False
+    # HOST: str = "localhost"
+    # PORT: int = 8000
+
+
+
+    # Конфигурация должна быть объявлена через SettingsConfigDict
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        # env_prefix="APP_",  # Все переменные должны начинаться с APP_
+        # case_sensitive=False
+    )
+
+# Инициализация конфига (лучше через вызов экземпляра)
+settings = AppSettings()
+
+logger.debug(settings)
