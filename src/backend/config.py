@@ -39,10 +39,10 @@ class AppSettings(BaseSettings):
     }
 
     CSV_MAX_SIZE: int = 20 * 1024 * 1024  # 20MB
-    CSV_ALLOWED_MIME_TYPES: list[str, str] = {"text/csv", "application/vnd.ms-excel"}
+    CSV_ALLOWED_MIME_TYPES: list[str] = {"text/csv", "application/vnd.ms-excel"}
 
     EXCEL_MAX_SIZE: int = 50 * 1024 * 1024  # 50MB
-    EXCEL_ALLOWED_MIME_TYPES: list[str, str] = {
+    EXCEL_ALLOWED_MIME_TYPES: list[str] = {
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.ms-excel",
     }
