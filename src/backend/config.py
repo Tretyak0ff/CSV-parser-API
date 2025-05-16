@@ -1,14 +1,14 @@
 from typing import Dict, Any
 
-DESCRIPTION = """
-    API helps you do awesome stuff.
-    ## Items
-    You can **read items**.
-    ## Users
-    You will be able to:
-    * **Create** (_not implemented_).
-    * **Read** (_not implemented_).
-    """
+DESCRIPTION = (
+    f"API helps you do awesome stuff." 
+    f"\n## Items"
+    f"\nYou can **read items**."
+    f"\n## Users"
+    f"\nYou will be able to:"
+    f"\n* **Create** (_not implemented_)." 
+    f"\n* **Read** (_not implemented_)."
+)
 
 
 API_METADATA: Dict[str, Any] = {
