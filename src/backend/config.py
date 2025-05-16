@@ -31,18 +31,18 @@ class AppSettings(BaseSettings):
     SUMMARY: str = "Deadpool's favorite app. Nuff said."
     CONTACT: dict[str, str] = {
         "name": "Evgen Tretyakov",
-        "email": "evgentretyakoff@gmail.com"
+        "email": "evgentretyakoff@gmail.com",
     }
     LICENSE_INFO: dict[str, str] = {
         "name": "MIT License",
         "url": "https://mit-license.org/",
-        }
+    }
 
     CSV_MAX_SIZE: int = 20 * 1024 * 1024  # 20MB
     CSV_ALLOWED_MIME_TYPES: list[str, str] = {"text/csv", "application/vnd.ms-excel"}
 
     EXCEL_MAX_SIZE: int = 50 * 1024 * 1024  # 50MB
-    EXCEL_ALLOWED_MIME_TYPES: list[str,str] = {
+    EXCEL_ALLOWED_MIME_TYPES: list[str, str] = {
         "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "application/vnd.ms-excel",
     }
@@ -52,27 +52,27 @@ class AppSettings(BaseSettings):
     DEFAULT_DELIMITER: str = ";"
     OUTPUT_ROW_LIMIT: int = 100
 
-
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
-        #extra="ignore",
+        # extra="ignore",
         # env_prefix="APP_",
     )
+
     @property
     def metadata(self) -> Dict[str, Any]:
         return {
-            'title': self.TITLE,
-            'description': self.DESCRIPTION,
-            'version': self.VERSION,
-            'summary': self.SUMMARY,
-            'contact': self.CONTACT,
-            'license_info': self.LICENSE_INFO,
-            'debug': self.DEBUG,
-            'root_path': self.ROOT_PATH,
-            'docs_url': self.DOCS_URL,
-            'redoc_url': self.REDOC_URL
+            "title": self.TITLE,
+            "description": self.DESCRIPTION,
+            "version": self.VERSION,
+            "summary": self.SUMMARY,
+            "contact": self.CONTACT,
+            "license_info": self.LICENSE_INFO,
+            "debug": self.DEBUG,
+            "root_path": self.ROOT_PATH,
+            "docs_url": self.DOCS_URL,
+            "redoc_url": self.REDOC_URL,
         }
 
 
