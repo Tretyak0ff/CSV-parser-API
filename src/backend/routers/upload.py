@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, File, Query, Depends
 from fastapi.responses import JSONResponse
 from loguru import logger
 from backend.dependencies import get_parser
-from backend.config import config
+from backend.config import settings
 from backend.core.csv_parser import CSVParser
 from backend.core.excel_parser import ExcelParser
 
@@ -16,8 +16,8 @@ async def upload_file(
     parser=Depends(get_parser),
     sheet_name: str = Query(None),
     header_row: int = Query(0),
-    encoding: str = Query(config.DEFAULT_ENCODING),
-    delimiter: str = Query(config.DEFAULT_DELIMITER),
+    encoding: str = Query(settings.DEFAULT_ENCODING),
+    delimiter: str = Query(settings.DEFAULT_DELIMITER),
 ):
     try:
         parser_params = {

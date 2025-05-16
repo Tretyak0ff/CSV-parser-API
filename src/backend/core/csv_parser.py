@@ -2,21 +2,22 @@ import csv
 import io
 from fastapi import HTTPException, status
 from loguru import logger
-from backend.config import config
+from backend.config import settings
+
 
 
 class CSVParser:
     async def process(
         self,
         file,
-        encoding: str = config.DEFAULT_ENCODING,
-        delimiter: str = config.DEFAULT_DELIMITER,
+        encoding: str = settings.DEFAULT_ENCODING,
+        delimiter: str = settings.DEFAULT_DELIMITER,
         **kwargs,
     ):
         await self.validate_file(
             file,
-            max_size=config.CSV_MAX_SIZE,
-            allowed_types=config.CSV_ALLOWED_MIME_TYPES,
+            max_size=settings.CSV_MAX_SIZE,
+            allowed_types=settings.CSV_ALLOWED_MIME_TYPES,
         )
 
         try:
@@ -48,7 +49,7 @@ class CSVParser:
         reader = csv.DictReader(stream, delimiter=delimiter)
         data = []
         async for row in self._async_read(reader):
-            if len(data) >= config.OUTPUT_ROW_LIMIT:
+            if len(data) >= settings.OUTPUT_ROW_LIMIT:
                 break
             data.append(row)
         return {

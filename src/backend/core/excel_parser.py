@@ -1,8 +1,9 @@
+import io
 import pandas as pd
 from fastapi import HTTPException, status
 from loguru import logger
-from backend.config import config
-import io
+from backend.config import settings
+
 
 
 class ExcelParser:
@@ -15,8 +16,8 @@ class ExcelParser:
     ):
         await self.validate_file(
             file,
-            max_size=config.EXCEL_MAX_SIZE,
-            allowed_types=config.EXCEL_ALLOWED_MIME_TYPES,
+            max_size=settings.EXCEL_MAX_SIZE,
+            allowed_types=settings.EXCEL_ALLOWED_MIME_TYPES,
         )
 
         try:
@@ -51,7 +52,7 @@ class ExcelParser:
         file.file.seek(0)
 
     async def _process_dataframe(self, df, filename):
-        data = df.head(config.OUTPUT_ROW_LIMIT).to_dict(orient="records")
+        data = df.head(settings.OUTPUT_ROW_LIMIT).to_dict(orient="records")
         return {
             "filename": filename,
             "columns": df.columns.tolist(),
