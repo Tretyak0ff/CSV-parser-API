@@ -1,10 +1,10 @@
 from fastapi import APIRouter, UploadFile, File, Query, Depends
 from fastapi.responses import JSONResponse
 from loguru import logger
-from backend.dependencies import get_parser
-from backend.config import settings
-from backend.core.csv_parser import CSVParser
-from backend.core.excel_parser import ExcelParser
+from backend.core.dependencies import get_parser
+from backend.core.config import settings
+from backend.services.csv_parser import CSVParser
+from backend.services.excel_parser import ExcelParser
 
 
 router = APIRouter()

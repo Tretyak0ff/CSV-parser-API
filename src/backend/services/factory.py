@@ -22,11 +22,11 @@ class FileParserFactory:
         return parser
 
 
-from backend.core.csv_parser import CSVParser
+from backend.services.csv_parser import CSVParser
 
 FileParserFactory.register("csv", CSVParser())
 
-from backend.core.excel_parser import ExcelParser
+from backend.services.excel_parser import ExcelParser
 
 FileParserFactory.register("xls", ExcelParser())
 FileParserFactory.register("xlsx", ExcelParser())

@@ -2,7 +2,7 @@ import io
 import pandas as pd
 from fastapi import HTTPException, status
 from loguru import logger
-from backend.config import settings
+from backend.core.config import settings
 
 
 

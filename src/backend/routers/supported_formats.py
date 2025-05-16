@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from loguru import logger
-from backend.core.factory import FileParserFactory
+from backend.services.factory import FileParserFactory
 
 router = APIRouter()
 
