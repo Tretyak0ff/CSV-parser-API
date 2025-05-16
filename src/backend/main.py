@@ -7,7 +7,7 @@ from backend.routers.root import router as root
 from backend.routers.supported_formats import router as formats_router
 from backend.routers.upload import router as upload_router
 from backend.config import settings
-#from backend.config import API_METADATA, SERVER_SETTINGS
+
 
 app = FastAPI(**settings.metadata)
 
