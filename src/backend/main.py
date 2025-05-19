@@ -4,7 +4,7 @@ from uvicorn import run
 from backend.exceptions import handle_http_exception
 from backend.routers.health import router as health_router
 from backend.routers.root import router as root
-from backend.routers.supported_formats import router as formats_router
+from backend.routers.format import router as formats_router
 from backend.routers.upload import router as upload_router
 from backend.core.config import settings
 

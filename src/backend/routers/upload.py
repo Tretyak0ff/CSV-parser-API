@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File, Query, Depends
 from fastapi.responses import JSONResponse
 from loguru import logger
-from backend.core.dependencies import get_parser
+from backend.services.dependencies import get_parser
 from backend.core.config import settings
 from backend.services.csv_parser import CSVParser
 from backend.services.excel_parser import ExcelParser
@@ -27,7 +27,7 @@ async def upload_file(
             "header_row": header_row,
         }
 
-        # Фильтруем параметры под конкретный процессор
+        # Filter parameters for process
         valid_params = {
             k: v
             for k, v in parser_params.items()
