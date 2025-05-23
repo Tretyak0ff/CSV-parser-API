@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 from uvicorn import run
 from backend.exceptions import handle_http_exception
@@ -11,6 +12,13 @@ from backend.core.config import settings
 
 app = FastAPI(**settings.metadata)
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+    allow_credentials=True,
+)
 
 app.add_exception_handler(HTTPException, handle_http_exception)
 app.include_router(root)
